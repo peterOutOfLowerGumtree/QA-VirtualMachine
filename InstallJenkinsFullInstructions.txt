@@ -1,0 +1,17 @@
+wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install -y jenkins
+
+sudo su jenkins -s /bin/bash
+ssh-keygen
+
+su vagrant
+sudo chmod 755 /var/lib/jenkins/secrets -R
+
+sudo service jenkins start
+
+echo "Next steps:"
+echo "1. Check ip address"
+echo "2. In Firefox, enter <your_ip>:8080"
+echo "3. Enter password from /var/lib/jenkins/secrets/initialAdminPassword.<extension>"
